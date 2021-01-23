@@ -8,17 +8,17 @@ urlpatterns = [
     # /blog/post
     path("post/", views.PostLV.as_view(), name="post_list"),
     # /blog/post/슬러그 이름
-    re_path(r"^(?P<slug>[-\w]+)/$", views.PostDv.as_view(), name="post_detail"),
-    # /blog/archaive/
-    path("archaive/", views.PostAV.as_view(), name="post_archaive"),
-    # /blog/archaive/2019
-    path("archaive/<int:year>/", views.PostYAV.as_view(), name="post_year_archaive"),
-    # /blog/archaive/2019/Nov
+    re_path(r"^post(?P<slug>[-\w]+)/$", views.PostDv.as_view(), name="post_detail"),
+    # /blog/archive/
+    path("archive/", views.PostAV.as_view(), name="post_archive"),
+    # /blog/archive/2019
+    path("archive/<int:year>/", views.PostYAV.as_view(), name="post_year_archive"),
+    # /blog/archive/2019/Nov
     path(
-        "archaive/<int:year>/<str:month>/",
+        "archive/<int:year>/<str:month>/",
         views.PostMAV.as_view(),
-        name="post_month_archaive",
+        name="post_month_archive",
     ),
-    # /blog/archaive/today
-    path("blog/archaive/today/", views.PostTAV.as_view(), name="post_today_archaive"),
+    # /blog/archive/today
+    path("blog/archive/today/", views.PostTAV.as_view(), name="post_today_archive"),
 ]
