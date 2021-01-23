@@ -3,9 +3,13 @@ from django.urls import reverse
 
 # Create your models here.
 class Post(models.Model):
-    title = models.CharField(max_length=50, verbose_name="TITLE")
+    title = models.CharField(max_length=100, verbose_name="TITLE")
     slug = models.SlugField(
-        "SLUG", unique=True, allow_unicode=True, help_text="타이틀의 내용을 간략화 시켜줍니다."
+        "SLUG",
+        unique=True,
+        max_length=100,
+        allow_unicode=True,
+        help_text="타이틀의 내용을 간략화 시켜줍니다.",
     )
     description = models.CharField(
         "DESCRIPTION", max_length=100, blank=True, help_text="간략한 설명"
@@ -26,10 +30,10 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("blog:post_detail", args=(self.slug))
+        return reverse("blog:post_detail", args=(self.slug,))
 
     def get_previous(self):
         return self.get_previous_by_modify_dt()
 
     def get_next(self):
-        return self._get_next_by_modify_dt()
+        return self.get_next_by_modify_dt()

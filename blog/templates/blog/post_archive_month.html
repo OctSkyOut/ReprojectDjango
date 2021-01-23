@@ -11,7 +11,7 @@
 			<ul>
 				{% for post in object_list %}
 				<li>
-					{{ post.modify_dt }} &nbsp;&nbsp;
+					{{ post.modify_dt |date:"Y-m-d"}} &nbsp;&nbsp;
 					<a href="{{ post.get_absolute_url }} ">
 						<strong>{{ post.title }}</strong>
 					</a>

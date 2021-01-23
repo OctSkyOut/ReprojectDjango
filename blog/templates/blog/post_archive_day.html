@@ -6,13 +6,13 @@
 		<title>Day Archive</title>
 	</head>
 	<body>
-		<h1>Posy Archive for {{ date|date:'Y-m-d' }}</h1>
+		<h1>Post Archive for {{ date|date:'Y-m-d' }}</h1>
 
 		<div>
 			<ul>
 				{% for post in object_list %}
 				<li>
-					{{ post.modify_dt }}
+					{{ post.modify_dt|date:"Y-m-d" }}
 					<a href="{{ post.get_absolute_url }}">
 						<strong>{{ post.title }}</strong>
 					</a>

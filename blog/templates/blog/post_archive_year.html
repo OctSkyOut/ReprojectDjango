@@ -13,7 +13,7 @@
 				<a
 					href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'b' %}"
 				>
-					{{ date|date:'M' }}
+					{{ date|date:'b' }}
 				</a>
 			</li>
 			{% endfor %}
@@ -23,7 +23,7 @@
 			<ul>
 				{% for post in object_list %}
 				<li>
-					{{post.modify_dt date|date:'Y-m-d'}} &nbsp;&nbsp;
+					{{post.modify_dt|date:'Y-m-d'}} &nbsp;&nbsp;
 					<a href="{{ post.get_absolute_url }}">
 						<strong>{{ post.title }}</strong>
 					</a>
