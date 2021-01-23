@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{object.title}}</title>
+	</head>
+	<body>
+		<h2>{{object.title}}</h2>
+
+		<p>
+			{% if object.get_previous %}
+			<a
+				href="{{object.get_previous.get_absolute_url}}"
+				title="View previous post"
+			>
+				< {{object.get_previous}}
+			</a>
+			{% endif %} {% if object.get_next %}
+			<a href="{{object.get_next.get_next_url}}" title="View next post">
+				{{object.get_next}} >
+			</a>
+			{% endif %}
+		</p>
+
+		<p>{{object.modify_dt | date:"Y-m-d"}}</p>
+		<br />
+		<div>
+			<p>{{object.content|linebreaks}}</p>
+		</div>
+	</body>
+</html>

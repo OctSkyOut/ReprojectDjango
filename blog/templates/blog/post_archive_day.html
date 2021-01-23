@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Day Archive</title>
+	</head>
+	<body>
+		<h1>Posy Archive for {{ date|date:'Y-m-d' }}</h1>
+
+		<div>
+			<ul>
+				{% for post in object_list %}
+				<li>
+					{{ post.modify_dt }}
+					<a href="{{ post.get_absolute_url }}">
+						<strong>{{ post.title }}</strong>
+					</a>
+					{% endfor %}
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
