@@ -20,7 +20,7 @@ urlpatterns = [
         name="post_month_archive",
     ),
     path(
-        "archive/<int:year>/<str:month>/<int:day>",
+        "archive/<int:year>/<int:month>/<str:day>",
         views.PostDAV.as_view(),
         name="post_day_archive",
     ),

@@ -1,0 +1,97 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block style %}
+<style>
+img{
+				width:100%;
+				height: 70vh;
+    		opacity:1 !importnat;
+				object-fit: cover;	
+			}
+			.slider_item > .active{
+				opacity :1;
+			}
+			.cat{
+				position : absolute;
+				width:100%;
+				height: 100%;
+				opacity : 0;
+				transition: opacity .5s ease-in-out;
+			}
+			.slider-item{
+					position: absolute;
+			}
+			.btn-left,.btn-right{
+					position: absolute;
+					top:40%
+			}
+			.btn-right{
+					right: 0;;
+			}
+      .cat-imgs{
+				width:100%;
+				height:70vh;
+				text-align :center;
+				margin: 0 auto;
+			}
+			.home-disc{
+				display:flex;
+			}
+			.container-sm {
+				text-align :center;
+				margin-top:5%;
+				height:20vh;
+				width: 40%;
+			}
+			.cont-head{
+				font-weight:bold;
+			}
+</style>
+{% endblock style %}
+
+
+{% block title %}
+Home
+{% endblock title %} 
+{% block content %}
+  	<div class="cat-imgs slider_item">
+					<div class="cat1 cat">
+					<img src="{% static 'images/cat1.jpg' %}" alt="regdoll">
+					</div>
+
+					<div class="cat2 cat">
+					<img src="{% static 'images/cat2.jpg' %}" alt="cat1">
+					</div>
+
+					<div class="cat3 cat">
+					<img src="{% static 'images/cat3.jpg' %}" alt="cat2">
+					</div>
+			</div>
+			<button type="button" class="btn btn-warning btn-left"><</button>
+			<button type="button" class="btn btn-warning btn-right">></button>
+			<div class="home-disc">
+				<div class="container-sm">
+					<h4 class="cont-head"> Nya-Jango에 오신 것을 환영합니다!</h4>
+					<p>
+						애옹이 블로그	소개
+					</p>
+				</div>
+				<div class="container-sm">
+					<h4 class="cont-head"> 홈페이지 제작 툴🔧</h4>
+					<span>1. html</span>
+					<br>
+					<span>2. css</span>
+					<br>
+					<span>3. 파이썬</span>
+					<br>
+					<span>4. Django Framework</span>
+				</div>
+			</div>
+			
+{% endblock content %}
+
+{% block jsCode %}
+ <script src="{% static 'scripts/catSlider.js' %}" ></script>
+{% endblock jsCode %}
+
+

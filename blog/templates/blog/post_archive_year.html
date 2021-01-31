@@ -11,9 +11,9 @@
 			{% for date in date_list %}
 			<li style="display: inline">
 				<a
-					href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'b' %}"
+					href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'m' %}"
 				>
-					{{ date|date:'b' }}
+					{{ date|date:'m' }}
 				</a>
 			</li>
 			{% endfor %}

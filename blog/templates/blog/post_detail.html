@@ -16,13 +16,17 @@
 			>
 				< {{object.get_previous}}
 			</a>
-			{% endif %} {% if object.get_next %}
+			{% endif %}
+			<br />
+			<br />
+			{% if object.get_next %}
 			<a href="{{object.get_next.get_next_url}}" title="View next post">
 				{{object.get_next}} >
 			</a>
 			{% endif %}
+			<br />
+			<br />
 		</p>
-
 		<p>{{object.modify_dt | date:"Y-m-d"}}</p>
 		<br />
 		<div>

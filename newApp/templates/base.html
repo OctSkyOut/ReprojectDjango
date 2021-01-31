@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/purecss@1.0.1/build/base-min.css"
+		/>
+		<style>
+			.navbar,
+			.footer {
+				background: #f8c471;
+			}
+			.btn {
+				border: 1px solid #d35400;
+				color: #d35400;
+			}
+			.text-muted {
+				color: black !importnat;
+			}
+			.git-link {
+				text-decoration: none;
+			}
+			.foot-container {
+				justify-content: space-around;
+			}
+			.nav-item{
+				margin:0 5% 0 5%;
+			}
+		</style>
+		{% block style %}{% endblock style %}
+		<title>Nya-Jango | {% block title %}{% endblock title %}</title>
+	</head>
+	<body>
+		<div>
+			<nav
+				class="navbar navbar-expand-lg navbar-light"
+				style="display:flex; position: sticky; width: 100vw; top: 0; z-index:1;"
+			>
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#"><🐱> Nya-Jango <&#47;🐱></a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Bookmark</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a
+									class="nav-link"
+									href="#"
+									id="navbarDropdown"
+									role="button"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
+								>
+									Blog
+								</a>
+							</li>
+							<li class="nav-item">
+								<a
+									class="nav-link "
+									href="#"
+									tabindex="-1"
+									aria-disabled="true"
+									>Photoes</a
+								>
+							</li>
+						</ul>
+						<form class="d-flex">
+							<input
+								class="form-control me-2"
+								type="search"
+								placeholder="Search"
+								aria-label="Search"
+								style="flex: 1"
+							/>
+							<button class="btn btn-outline-success" type="submit">
+								Search🔍
+							</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+			<div class="content">
+			{% block content %}{% endblock content %}
+			</div>
+			<footer
+				class="footer mt-auto py-3"
+				style="position: fixed; width: 100vw; bottom: 0"
+				style="display: flex"
+			>
+				<div class="container foot-container" style="display: flex">
+					<span class="text-muted navbar-brand" style="margin 5%"
+						><🐱> Nya-Jango | 냥-장고 <&#47;🐱>
+					</span>
+					<span class="text-muted navbar-brand">
+						<a
+							href="https://github.com/OctSkyOut"
+							class="text-muted git-link"
+							aria-current="page"
+							href="#"
+						>
+							Oct_Sky_Out©️
+						</a>
+					</span>
+				</div>
+			</footer>
+		</div>
+	</body>
+	{% block jsCode %}{% endblock jsCode %}
+</html>
