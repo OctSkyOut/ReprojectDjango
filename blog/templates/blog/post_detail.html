@@ -1,36 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{{object.title}}</title>
-	</head>
-	<body>
-		<h2>{{object.title}}</h2>
 
-		<p>
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+	.page-move{
+		color:black;
+		text-decoration: none;
+	}
+
+	.page-move:hover{
+		color:#f8c471;
+	}
+</style>
+{% endblock style %}
+
+{% block title %}
+{{object.title}}
+{% endblock title %}
+
+{% block content %}
+		<h2>{{object.title}}</h2>
+		<p>{{object.modify_dt | date:"Y-m-d"}}</p>
+		<hr />
+		<div>
+			<p>{{object.content|linebreaks}}</p>
+		</div>
+		<hr>
+		<div>
+				<p>
 			{% if object.get_previous %}
-			<a
+			<a 
+				class="page-move"
 				href="{{object.get_previous.get_absolute_url}}"
 				title="View previous post"
 			>
 				< {{object.get_previous}}
 			</a>
 			{% endif %}
-			<br />
-			<br />
+			&nbsp
+			&nbsp
+			&nbsp
 			{% if object.get_next %}
-			<a href="{{object.get_next.get_next_url}}" title="View next post">
+			<a 
+			class="page-move"
+			href="{{object.get_next.get_absolute_url}}" 
+			title="View next post"
+			>
 				{{object.get_next}} >
 			</a>
 			{% endif %}
-			<br />
-			<br />
 		</p>
-		<p>{{object.modify_dt | date:"Y-m-d"}}</p>
-		<br />
-		<div>
-			<p>{{object.content|linebreaks}}</p>
 		</div>
-	</body>
-</html>
+		
+{% endblock content %}

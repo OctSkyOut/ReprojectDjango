@@ -1,19 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Archive Year</title>
-	</head>
-	<body>
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+.month, .post-url{
+		color:black;
+		text-decoration:none;
+}
+.month:hover, .post-url:hover{
+	color:#f8c471;
+}
+</style>
+{% endblock style %}
+
+{% block title %}Archive Year{% endblock title %}
+
+{% block content %}
 		<h1>Post Archives for {{ year|date:'Y' }}</h1>
 		<ul>
 			{% for date in date_list %}
 			<li style="display: inline">
 				<a
+					class="month"
 					href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'m' %}"
 				>
-					{{ date|date:'m' }}
+					{{ date|date:'m' }}월 &nbsp
 				</a>
 			</li>
 			{% endfor %}
@@ -24,12 +34,12 @@
 				{% for post in object_list %}
 				<li>
 					{{post.modify_dt|date:'Y-m-d'}} &nbsp;&nbsp;
-					<a href="{{ post.get_absolute_url }}">
+					<a class="post-url" href="{{ post.get_absolute_url }}">
 						<strong>{{ post.title }}</strong>
 					</a>
 				</li>
 				{% endfor %}
 			</ul>
 		</div>
-	</body>
-</html>
+
+{% endblock content %}

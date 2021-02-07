@@ -1,19 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Detail</title>
-	</head>
-	<body>
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+	.bookmark-url, .url-li{
+		font-size:1.5rem;
+		color:black;
+		text-decoration:none;
+	}
+	.bookmark-url:hover{
+		color :#f8c471;
+	}
+</style>
+{% endblock style %}
+
+{% block content %}
 		{% comment %} 북마크 리스트 1개 1개의 페이지 모형{% endcomment %}
 		<div id="content">
 			{% comment %} 각 북마크의 페이지 이름 {% endcomment %}
 			<h1>{{object.title}}</h1>
+			<hr>
 			<ul>
 				{% comment %} 북마크의 링크 {% endcomment %}
-				<li>URL : <a href="{{ object.url }}">{{object.url}}</a></li>
+				<li class="url-li">URL : <a class="bookmark-url" href="{{ object.url }}">{{object.url}}</a></li>
 			</ul>
 		</div>
-	</body>
-</html>
+{% endblock content %}

@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Archive</title>
-	</head>
-	<body>
-		<h1>Post Archive unil {% now "Y-m-d" %}</h1>
-		<ul>
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+	.archive-year{
+		font-size:2rem;	
+	}
+	.archive-url{
+		color : black;
+		text-decoration :none;
+	}
+	.archive-url:hover{
+		color : #f8c471;
+	}
+</style>
+{% endblock style %}
+
+{% block title %}Archive{% endblock title %}
+
+{% block content %}
+		<h1>지금까지 보관한 포스트 &nbsp Today : {% now "Y-m-d" %}</h1>
+		<hr>
+	<ul>
 			{% for date in date_list %}
 			<li style="display: inline">
-				<a href="{% url 'blog:post_year_archive' date|date:'Y' %}"
-					>Year - {{date|date:'Y'}}</a
+				<a class="archive-url archive-year" href="{% url 'blog:post_year_archive' date|date:'Y' %}"
+					>{{date|date:'Y'}}년 &nbsp	</a
 				>
 			</li>
 			{% endfor %}
@@ -22,12 +35,11 @@
 				{% for post in object_list %}
 				<li>
 					{{ post.modify_dt |date:'Y-m-d' }} &nbsp;&nbsp;
-					<a href="{{ post.get_absolute_url }}">
+					<a class="archive-url "href="{{ post.get_absolute_url }}">
 						<strong>{{ post.title }}</strong>
 					</a>
 				</li>
 				{% endfor %}
 			</ul>
 		</div>
-	</body>
-</html>
+{% endblock content %}	

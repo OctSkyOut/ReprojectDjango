@@ -1,24 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Day Archive</title>
-	</head>
-	<body>
-		<h1>Post Archive for {{ date|date:'Y-m-d' }}</h1>
+{% extends 'base.html' %}
 
+
+{% block style %}
+<style>
+	.post-url{
+		color:black;
+		text-decoration:none;
+	}
+	.post-url:hover{
+		color:#f8c471;	
+
+	}
+	</style>
+{% endblock style %}
+
+{% block title %}
+Day Archive
+{% endblock title %}
+
+{% block content %}
+<h1>Post Archive for {{ day|date:'Y-m-d' }}</h1>
 		<div>
 			<ul>
 				{% for post in object_list %}
 				<li>
 					{{ post.modify_dt|date:"Y-m-d" }}
-					<a href="{{ post.get_absolute_url }}">
+					<a class="post-url" href="{{ post.get_absolute_url }}">
 						<strong>{{ post.title }}</strong>
 					</a>
 					{% endfor %}
 				</li>
 			</ul>
 		</div>
+{% endblock content %}		
 	</body>
 </html>

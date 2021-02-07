@@ -1,30 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>전체 포스트</title>
-	</head>
-	<body>
-		<h1>Blog List</h1>
-		<div>
-			{% for post in posts %}
-			<h3><a href="{{ post.get_absolute_url }}"> {{post.title}}</a></h3>
-			{{ post.modify_dt | date:"Y-m-d" }}
-			<p>{{ post.description }}</p>
-			{% endfor %}
-		</div>
-		<br />
-		<div>
-			<span>
-				{% if page_obj.has_previous %}
-				<a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
-				{% endif %} 
-				Page {{ page_obj.number }} of {{page_obj.paginator.num_pages}} 
-				{% if page_obj.has_next %}
-					<a href="?page={{page_obj.next_page_number}}">NextPage</a>
-				{% endif %}
-			</span>
-		</div>
-	</body>
-</html>
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+.link{
+	color : black;
+	text-decoration :none;
+	font-weight :bloder;
+}
+.link:hover{
+	color :#f8c471;
+}
+.post-head{
+	font-size:2rem;
+}
+</style>
+{% endblock style %}
+
+{% block title %}
+전체 포스트
+{% endblock title %}
+
+{% block content %}
+<h1>Blog List</h1>
+<hr>
+<div>
+	{% for post in posts %}
+	<h3 class="post-head">
+		<a class="link" href="{{ post.get_absolute_url }}"> {{post.title}}</a>
+	</h3>
+	<br>
+	<span>수정일자 : {{ post.modify_dt | date:"Y-m-d" }}</span>
+	<br>
+	<p>{{ post.description }}</p>
+	<br>
+	{% endfor %}
+</div>
+<hr>
+<div>
+	<span>
+		{% if page_obj.has_previous %}
+		<a class="link" href="?page={{ page_obj.previous_page_number }}">◀︎ PrevPage</a>
+		{% endif %} 
+		Page {{ page_obj.number }} of {{page_obj.paginator.num_pages}} 
+		{% if page_obj.has_next %}
+			<a class="link" href="?page={{page_obj.next_page_number}}">NextPage ▶︎</a>
+		{% endif %}
+	</span>
+</div>
+
+{% endblock content %}
