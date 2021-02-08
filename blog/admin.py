@@ -10,6 +10,7 @@ class PostAdmin(admin.ModelAdmin):
         "id",
         "title",
         "modify_dt",
+        "tags",
     )
     list_filter = ("modify_dt",)
     search_fields = (
@@ -17,3 +18,9 @@ class PostAdmin(admin.ModelAdmin):
         "content",
     )
     prepopulated_fields = {"slug": ("title",)}
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related("tags")
+
+    def tag_list(self, obj):
+        return ", ".join(o.name for o in obj.tags.all())

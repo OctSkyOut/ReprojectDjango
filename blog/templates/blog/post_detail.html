@@ -51,5 +51,15 @@
 			{% endif %}
 		</p>
 		</div>
+		<div>
+			<b>Tags</b> <i class="bi bi-bookmark-heart-fill"></i>
+			{% load taggit_templatetags2_tags %}
+			{% get_tags_for_object object as "tags"%}
+			{% for tag in tags %}
+				<a href="{% url 'blog:tagged_object_list' tag.name %}">{{tag.name}}</a>
+			{% endfor %}
+			&emsp;
+			<a href="{% url 'blog:tag_cloud' %}"><span class="btn btn-warn btn-sm">Tag Cloud</span></a>
+		</div>
 		
 {% endblock content %}

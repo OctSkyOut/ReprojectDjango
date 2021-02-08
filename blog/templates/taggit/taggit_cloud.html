@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+  .tag-cloud{
+    width:100%;
+    text-align:center;
+    border:1px solid #f8c471;
+    background-color : #EEEEEE;
+  }
+  .tag-1{
+    font-size:.5rem;
+  }
+
+  .tag-2{
+    font-size:.8rem;
+  }
+
+  .tag-3{
+    font-size:1rem;
+  }
+
+  .tag-4{
+    font-size:1.3rem;
+  }
+
+  .tag-5{
+    font-size:1.5rem;
+  }
+
+  .tag-6{
+    font-size:1.8rem;
+  }
+
+</style>
+{% endblock style %}
+
+{% block title %}
+Tag Cloud
+{% endblock title %}
+
+{% block content %}
+  <h1>Tag Cloud</h1>
+  <hr>
+  <div class="tag-cloud">
+    {% load taggit_templatetags2_tags %}
+    {% get_tagcloud as tags %}
+    {% for tag in tags %}
+      <span class="tag-{{tag.weight|floatformat:0}}">
+      </span>
+        <a href="{% url 'blog:tagged_object_list' tag.name %}">{{tag.name}}_{{tag.num_times}}</a>
+    {% endfor %}
+  </div>
+{% endblock content %}
