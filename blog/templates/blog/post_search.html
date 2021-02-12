@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+{% block content %}
+<form action="." method="post">
+{% csrf_token %}
+  <div>
+   {{ form.as_table }} 
+  <input type="submit" value="submit" class="btn btn-warn">
+  </div>
+</form>
+<br><br>
+<div>
+
+{% if object_list %}
+  {% for post in object_list %}
+    <h1><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h1>
+    수정일자 : {{post.modify_dt|date:"Y-m-d"}}
+    <p>설명 : {{post.description}}</p>
+    <hr>
+  {% endfor %}
+{% elif search_term %}
+  <b><i>Search Word({{search_term}}) Not Found</i></b>
+{% endif %}  
+</div>
+{% endblock content %}

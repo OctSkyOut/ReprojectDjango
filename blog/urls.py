@@ -29,4 +29,6 @@ urlpatterns = [
     # -Tag-------------------------------------------------------------------------------------------
     path("tag/", views.TagCloudTV.as_view(), name="tag_cloud"),
     path("tag/<str:tag>/", views.TaggedObjectLV.as_view(), name="tagged_object_list"),
+    # -Search-------------------------------------------------------------------------------------------
+    path("search/", views.SearchFormView.as_view(), name="search"),
 ]
