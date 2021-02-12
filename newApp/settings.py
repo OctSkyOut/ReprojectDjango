@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "newApp",
     "taggit.apps.TaggitAppConfig",
     "taggit_templatetags2",
+    "photo.apps.PhotoConfig",
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 TAGGIT_CASE_INSENSITIVE = True
 TAGGIT_LIMIT = 50
+
+MEDIA_URL = "/midia/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "midia")
