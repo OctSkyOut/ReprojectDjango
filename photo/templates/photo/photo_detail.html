@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Photo Detail{% endblock title %}
+
+{% block content %}
+  <h2 class="mt-5">{{ object.title }}</h2>
+
+  <div class="row">
+    <div class="col-md-9">
+      <a href="{{ object.image.url }}">
+        <img src="{{ object.image.url }}" style="width:100%;">
+      </a>
+    </div>
+
+    <ul>
+      <li class="h5">사진 설명</li>
+        
+        {% if object.description %}
+          <p>{{ object.description}}</p>
+          <p>{{ object.linebreakers }}</p>
+        {% else %}
+          <p>설명없음</p>
+        {% endif %}          
+      <li class="h5">업로드 일자</li>
+         <p>{{ object.update_dt|date:'Y-m-d'}}</p>
+      <li class="h5">앨범명</li>
+        <p>
+          <a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a>
+        </p>
+    </ul>
+  </div>
+{% endblock content %}
