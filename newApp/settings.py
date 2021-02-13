@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "taggit.apps.TaggitAppConfig",
     "taggit_templatetags2",
     "photo.apps.PhotoConfig",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "newApp.urls"
@@ -142,5 +144,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 TAGGIT_CASE_INSENSITIVE = True
 TAGGIT_LIMIT = 50
 
-MEDIA_URL = "/midia/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "midia")
+INTERNAL_IPS = "127.0.0.1"
