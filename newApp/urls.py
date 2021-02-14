@@ -18,10 +18,14 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from newApp.views import HomeView
+from newApp.views import HomeView, UserCreateView, UserCreateDoneTV
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # 회원가입관련 url
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/register/", UserCreateView.as_view(), name="resgister"),
+    path("account/register/done", UserCreateDoneTV.as_view(), name="resgister_done"),
     # class기반 뷰
     path("", HomeView.as_view(), name="home"),
     path("bookmark/", include("bookmark.urls")),
