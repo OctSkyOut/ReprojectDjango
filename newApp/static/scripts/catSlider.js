@@ -20,7 +20,6 @@ const slide = () => {
 };
 const prevSlide = () => {
   const lastSlider = document.querySelector(".cat:last-child");
-  console.log(lastSlider)
   const currentSlide = document.querySelector(`.${CLASS_ACTIVE}`);
   if (currentSlide) {
     currentSlide.classList.remove(CLASS_ACTIVE);
