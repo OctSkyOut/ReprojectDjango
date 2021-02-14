@@ -41,6 +41,17 @@
 				background-color:#FF8F45;
 				border:1px solid #FF8F45;
 			}
+			.user-link, .guest-link{
+				color: #d35400;
+				text-decoration: none;
+			}
+			.user-link:hover, .guest-link:hover{
+				color: #d35400;
+			}
+			.dropdown-toggle:hover{
+				border: 1px solid #d35400;
+			}
+
 			.footer{
 				padding : 0%;
 				align-content:start;
@@ -71,7 +82,7 @@
 				style="display:flex; position: sticky; width: 100vw; top: 0; z-index:1;"
 			>
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#"><🐱> Nya-Jango <&#47;🐱></a>
+					<a class="navbar-brand" href="{% url 'home' %}"><🐱> Nya-Jango <&#47;🐱></a>
 					<button
 						class="navbar-toggler"
 						type="button"
@@ -86,19 +97,14 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-							</li>
-							<li class="nav-item">
 								<a class="nav-link" href="{% url 'bookmark:list' %}">Bookmark</a>
 							</li>
-							<li class="nav-item dropdown">
+							<li class="nav-item">
 								<a
 									class="nav-link"
 									href="{% url 'blog:index' %}"
-									id="navbarDropdown"
 									role="button"
-									data-bs-toggle="dropdown"
-									aria-expanded="false"
+									aria-expanded="true"
 								>
 									Blog
 								</a>
@@ -121,19 +127,51 @@
 									>Search</a
 								>
 							</li>
+							<li class="nav-item">
+								<a
+									class="nav-link "
+									href="{% url 'photo:index' %}"
+									tabindex="-1"
+									aria-disabled="true"
+									>Photo</a
+								>
+							</li>
 						</ul>
-						<form class="d-flex">
-							<input
-								class="form-control me-2"
-								type="search"
-								placeholder="Search"
-								aria-label="Search"
-								style="flex: 1"
-							/>
-							<button class="btn btn-outline-success srch-btn" type="submit">
-								Search🔍
-							</button>
-						</form>
+
+						<div class="dropdown">
+							<div class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+								{% if user.is_active %}
+									<a href="#" class="user-link">
+										<i class="bi bi-person-circle"></i>&ensp;{% firstof user.get_short_name user.get_username%}&ensp;
+									</a>
+								{% else %}
+									<a href="#" class="guest-link">
+										<i class="bi bi-person-circle"></i>&ensp;게스트&ensp;
+									</a>
+								{% endif %}
+							</div>
+
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								
+								{% if user.is_active %}
+									<div class="dropdown-item">
+										<a href="{% url 'logout' %}" class="dropdown-item">로그아웃</a>
+									</div>
+									<div class="dropdown-item">
+										<a href="{% url 'password_change' %}" class="dropdown-item">비밀번호 변경하기</a>
+									</div>
+								{% else %}
+									
+									<li class="dropdown-item">
+										<a href="{% url 'login' %}" class="dropdown-item">로그인</a>
+									</li>
+									<li class="dropdown-item">
+										<a href="{% url 'resgister' %}" class="dropdown-item">가입하기</a>
+									</li>
+								{% endif %}
+							
+							</ul>
+						</div>
 					</div>
 				</div>
 			</nav>
@@ -164,5 +202,7 @@
 			</footer>
 		</div>
 	</body>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 	{% block jsCode %}{% endblock jsCode %}
 </html>
