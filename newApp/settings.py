@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "taggit_templatetags2",
     "photo.apps.PhotoConfig",
     "debug_toolbar",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,6 @@ TAGGIT_CASE_INSENSITIVE = True
 TAGGIT_LIMIT = 50
 
 INTERNAL_IPS = "127.0.0.1"
+
+LOGIN_URL = "accouns/login/"
+LOGIN_REDIRECT_URL = "/"
